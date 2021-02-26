@@ -1,0 +1,6 @@
+venv
+config.py
+__pycache__
+test.py
+*.csv
+*.apkg
