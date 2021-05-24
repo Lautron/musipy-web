@@ -1,15 +1,17 @@
 from flask import render_template, jsonify
-from .musipy import musipy
+from .musipy import Musipy
 from backend import app
+
+mpy = Musipy()
 
 @app.route('/')
 def index():
     return '<h1>Hello there!</h1>'
 
-@app.route('/<playlist_id>')
-def get_playlist_json(playlist_id):
-    if len(playlist_id) != 22:
-        return '<h1>Incorrect id</h1>'
-    songs_json = jsonify(musipy(playlist_id))
-    return songs_json
+@app.route('/songs/<playlist_id>')
+def get_songs_data(playlist_id):
+    return jsonify(Musipy.get_songs(playlist_id))
 
+@app.route('/lyrics/<title>/<author>/<trans_lang>')
+def get_lyrics_data(title, author, trans_lang):
+    return jsonify(Musipy.get_lyrics(title, author, trans_lang))
