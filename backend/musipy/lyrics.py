@@ -18,14 +18,16 @@ def get_lyrics_list(song_title, author):
     lyrics_list = cleaned_lyrics.split('\n')
     return [verse.strip() for verse in lyrics_list if verse]
 
-def get_lyrics_trans(song_title, author, trans_lang='en'):
+def get_lyrics_dict(song_title, author, trans_lang='en'):
     lang_dict = {
         'es': ' (traducción al español)',
         'en': ' (english translation)'
     }
     songs = [song_title, song_title + lang_dict[trans_lang]]
     lyrics = [get_lyrics_list(song, author) for song in songs]
-    # [print(len(i)) for i in lyrics if i]
+    if not lyrics[0]:
+        print(f'No lyrics found for "{song_title}"\n')
+        return None
     if not lyrics[1] or not len(lyrics[0]) == len(lyrics[1]):
         print('\nTranslating song...')
         lyrics[1] = pool.map(translate_verse, lyrics[0])
@@ -33,8 +35,6 @@ def get_lyrics_trans(song_title, author, trans_lang='en'):
         # res = {verse: translate_verse(verse, trans) for verse in lyrics}
 
     res = dict(zip(lyrics[0], lyrics[1]))
-#    with open('test.py', 'w') as f:
-#        f.write(pprint.pformat(res))
     return res
 
 if __name__ == "__main__":

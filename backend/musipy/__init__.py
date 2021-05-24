@@ -1,1 +1,1 @@
-from .musipy import musipy, write_csv
+from .musipy import Musipy
