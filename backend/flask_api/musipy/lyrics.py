@@ -1,12 +1,10 @@
 import lyricsgenius, re, pprint, csv, time
 from .config import genius_api_key
 from .translate import translate_verse
-from google_trans_new import google_translator
 from multiprocessing.dummy import Pool as ThreadPool
 
 pool = ThreadPool(8)
 genius = lyricsgenius.Genius(genius_api_key)
-trans = google_translator()
 
 def get_lyrics_list(song_title, author):
     try:
@@ -34,7 +32,7 @@ def get_lyrics_dict(song_title, author, trans_lang='en'):
         
         # res = {verse: translate_verse(verse, trans) for verse in lyrics}
 
-    res = dict(zip(lyrics[0], lyrics[1]))
+    res = list(zip(lyrics[0], lyrics[1]))
     return res
 
 if __name__ == "__main__":

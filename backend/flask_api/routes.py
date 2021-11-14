@@ -1,6 +1,6 @@
 from flask import render_template, jsonify
 from .musipy import Musipy
-from backend import app
+from flask_api import app
 
 mpy = Musipy()
 
