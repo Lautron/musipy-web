@@ -8,10 +8,10 @@ class Musipy:
 
     @staticmethod
     def get_lyrics(song_title, author, trans_lang):
-        return get_lyrics_dict(song_title, author, trans_lang='en')
+        return get_lyrics_dict(song_title, author, trans_lang='english')
 
 if __name__ == "__main__":
     test = Musipy()
     print(test.get_songs('https://open.spotify.com/playlist/4zBVGR3eBYD1UcL24ytABt?si=JFl3NkkbTaWhVMOINJ85AQ'))
-    print(test.get_lyrics("AUSLÄNDER", 'Rammstein', trans_lang='en'))
+    print(test.get_lyrics("AUSLÄNDER", 'Rammstein', trans_lang='english'))
 
