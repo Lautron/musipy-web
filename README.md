@@ -46,5 +46,9 @@ List containing original version and translated version for each verse in the so
   ...
 ]
 ```
+## TODO
+- Add better error handling
+- Follow general API conventions
+- Add route to generate anki flashcards from song lyrics
 
 
